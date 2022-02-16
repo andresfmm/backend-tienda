@@ -32,8 +32,10 @@ class Server{
       }
 
       middlewares() {
+          this.app.use('/uploads', express.static(process.cwd() + '/uploads'));
           this.app.use(bodyParser.json())
           this.app.use(bodyParser.urlencoded({ extended: true }));
+          
           
           
           this.app.use( cors() );

@@ -16,7 +16,7 @@ const  productSchema = new Schema({
         type: String
     },
     product_status: {
-      type: Number
+      type: Boolean
     },
     created_at: {
         type: Date

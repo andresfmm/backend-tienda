@@ -12,7 +12,6 @@ const crearProduct = async( req, res = response ) => {
 
         const productExist = await ProductModel.findOne({ product_name: product_name});
 
-        console.log(productExist)
 
         if(productExist) {
            return res.status(200).json({
@@ -32,7 +31,7 @@ const crearProduct = async( req, res = response ) => {
             product_name:        product_name,
             product_description: product_description,
             product_price:       product_price,
-            product_status:      1,
+            product_status:      true,
          }
 
          const productModel = new ProductModel(data);
@@ -45,7 +44,6 @@ const crearProduct = async( req, res = response ) => {
         });
         
     } catch (msg) {
-        console.log(msg)
         res.status(200).json({
             ok: false,
             msg: 'Consulte al administrador del sistema',
@@ -56,6 +54,22 @@ const crearProduct = async( req, res = response ) => {
 }
 
 
+
+const getProducts = async( req, res = response ) => {
+    try {
+        
+        const productos = await ProductModel.find({ product_status: true});
+        res.status(200).json({
+            ok: true,
+            productos,
+        });
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
 module.exports = {
-    crearProduct
+    crearProduct,
+    getProducts
 }
