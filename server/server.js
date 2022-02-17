@@ -9,6 +9,7 @@ const  User  = require('../routes/user');
 const  Product  = require('../routes/product');
 
 const { dbConnection } = require('../database/dbConnection');
+const { Orden } = require('../routes/orden');
 
 
 class Server{
@@ -20,6 +21,7 @@ class Server{
           this.paths = {
              user: '/api/v1/user',
              product: '/api/v1/product',
+             orden: '/api/v1/orden',
           }
 
           this.middlewares();
@@ -51,7 +53,8 @@ class Server{
 
         this.app.use(this.paths.user,  User);
         this.app.use(this.paths.product,  Product);
-
+        this.app.use(this.paths.orden,  Orden);
+        
       }
 
       listen(){
